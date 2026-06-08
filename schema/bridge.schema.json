@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/REPLACE_ME/NVMeter-drivedb/schema/bridge.schema.json",
+  "$id": "https://github.com/hualiu77/NVMeter-drivedb/schema/bridge.schema.json",
   "title": "NVMeter bridge entry",
   "type": "object",
   "additionalProperties": false,
