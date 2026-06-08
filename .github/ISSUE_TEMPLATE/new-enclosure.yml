@@ -1,0 +1,23 @@
+name: New enclosure data
+description: I have probe output but I don't know how to write the YAML
+labels: [bridge-data]
+body:
+  - type: input
+    id: model
+    attributes: { label: Enclosure brand + model }
+    validations: { required: true }
+  - type: textarea
+    id: spusb
+    attributes:
+      label: "SPUSBDataType excerpt for this enclosure"
+      render: text
+    validations: { required: true }
+  - type: textarea
+    id: probes
+    attributes:
+      label: "smartctl probe outputs (all variants you tried)"
+      render: text
+    validations: { required: true }
+  - type: input
+    id: working
+    attributes: { label: "Which -d flag worked?", placeholder: "-d sat,16" }

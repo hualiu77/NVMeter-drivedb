@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/REPLACE_ME/NVMeter-drivedb/schema/bridge.schema.json",
+  "title": "NVMeter bridge entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["bridge", "usb_ids", "smartctl_args"],
+  "description": "Empty usb_ids + empty smartctl_args means a Thunderbolt-native PCIe enclosure that needs no quirk — kept here for vendor-tracking purposes.",
+  "properties": {
+    "bridge":   { "type": "string", "minLength": 2 },
+    "vendor":   { "type": "string" },
+    "usb_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{4}:[0-9a-f]{4}$"
+      },
+      "uniqueItems": true
+    },
+    "smartctl_args": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "verified_by": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^@[A-Za-z0-9-]+$" }
+    },
+    "notes": { "type": "string" }
+  }
+}

@@ -1,0 +1,13 @@
+bridge: "WERO TBT5 1M2-DOCK (Thunderbolt 5, PCIe direct passthrough)"
+vendor: "WERO"
+usb_ids: []
+smartctl_args: []
+verified_by:
+  - "@liuhua"
+notes: |
+  Thunderbolt 5 dock with one internal M.2 NVMe slot exposed as a native
+  PCIe device. macOS treats the drive as a generic NVMe controller, so no
+  USB pass-through quirk is needed: smartctl reads SMART directly with no
+  -d flag. Confirmed against a Crucial P3 Plus 1TB (CT1000P3PSSD8) on
+  macOS 26.0 / Mac Studio M2 Ultra, returning full NVMe smart-log
+  (temperature, percentage_used, available_spare, media_errors).
