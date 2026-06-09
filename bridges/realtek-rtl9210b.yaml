@@ -1,0 +1,38 @@
+bridge: "Realtek RTL9210B-CG (USB-NVMe bridge)"
+vendor: "Realtek"
+usb_ids:
+  - "0bda:9210"
+smartctl_args: []
+verified_by:
+  - "@hualiu77"
+notes: |
+  Realtek's USB 3.2 Gen 2 (10 Gbps) to NVMe bridge chip. Shipped in a
+  huge number of low-cost M.2 NVMe enclosures (Aliexpress generics,
+  Acasis, ORICO, Yottamaster, OWC Express 4M2, etc.). Reports the chip
+  name "RTL9210B-CG" as both USB Product String and IORegistry MediaName.
+
+  Identified via IORegistry on a Mac Studio M2 Ultra running macOS 26.0:
+      USB Vendor Name = "Realtek"   idVendor  = 0x0BDA  (3034)
+      USB Product Name = "RTL9210B-CG" idProduct = 0x9210 (37392)
+
+  macOS status: BLOCKED. All of the following return either
+  "Not a device of type 'scsi'" or "Operation not supported by device"
+  on macOS 14+ with smartmontools 7.5:
+      smartctl -i /dev/diskN
+      smartctl -d sntrealtek -i /dev/diskN
+      smartctl -d sntrealtek/sat -i /dev/diskN
+      smartctl -d sat,auto -i /dev/diskN
+      smartctl -d sat,16 -i /dev/diskN
+      smartctl -d sat,12 -i /dev/diskN
+      smartctl -d nvme -i /dev/diskN
+
+  On Linux the `sntrealtek` driver in smartmontools 7.5 does work via
+  the kernel's SCSI-generic interface, exposing the underlying NVMe
+  identify + health log. macOS does not expose SCSI generic to user
+  space, so there is no userland workaround. A DriveDx-style kext
+  could, in principle, intercept the URB layer — NVMeter explicitly
+  does not take that route.
+
+  Practical NVMeter behavior: detect this USB ID and surface a friendly
+  "SMART pass-through blocked by macOS" card. Recommend the user attach
+  the drive through a Thunderbolt enclosure for full SMART support.
