@@ -1,0 +1,17 @@
+bridge: "Unknown bridge"
+usb_ids:
+  - "059b:0275"
+  - "059f:0651"
+  - "0634:0655"
+  - "07ab:fccd"
+  - "0d49:7010"
+smartctl_args: []
+verified_by: []
+notes: |
+  Imported from smartmontools drivedb.h ($Id: drivedb.h 5706 2025-04-27).
+  Original description: LaCie hard disk (FA Porsche design);
+
+  Status on macOS: UNVERIFIED. The smartctl flags above work on
+  Linux but most USB-SATA bridges are blocked by macOS's user-
+  space SCSI stack regardless of the -d argument (see README).
+  Please open a PR upgrading verified_by once tested.

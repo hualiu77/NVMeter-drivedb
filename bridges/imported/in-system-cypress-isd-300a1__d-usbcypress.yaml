@@ -1,0 +1,13 @@
+bridge: "In-System/Cypress ISD-300A1"
+usb_ids:
+  - "05ab:0060"
+smartctl_args: ["-d", "usbcypress"]
+verified_by: []
+notes: |
+  Imported from smartmontools drivedb.h ($Id: drivedb.h 5706 2025-04-27).
+  Original description: ; In-System/Cypress ISD-300A1
+
+  Status on macOS: UNVERIFIED. The smartctl flags above work on
+  Linux but most USB-SATA bridges are blocked by macOS's user-
+  space SCSI stack regardless of the -d argument (see README).
+  Please open a PR upgrading verified_by once tested.

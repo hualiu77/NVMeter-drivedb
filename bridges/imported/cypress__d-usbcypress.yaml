@@ -1,0 +1,18 @@
+bridge: "Cypress"
+usb_ids:
+  - "0bc2:0503"
+  - "0c0b:b001"
+  - "1006:3002"
+  - "1058:0701"
+  - "125f:a93a"
+  - "125f:a94a"
+smartctl_args: ["-d", "usbcypress"]
+verified_by: []
+notes: |
+  Imported from smartmontools drivedb.h ($Id: drivedb.h 5706 2025-04-27).
+  Original description: iRiver iHP-120/140 MP3 Player; Cypress
+
+  Status on macOS: UNVERIFIED. The smartctl flags above work on
+  Linux but most USB-SATA bridges are blocked by macOS's user-
+  space SCSI stack regardless of the -d argument (see README).
+  Please open a PR upgrading verified_by once tested.

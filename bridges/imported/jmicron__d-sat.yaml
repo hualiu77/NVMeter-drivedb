@@ -1,0 +1,16 @@
+bridge: "JMicron"
+usb_ids:
+  - "059b:047a"
+  - "152d:0561"
+  - "152d:1337"
+  - "152d:2590"
+smartctl_args: ["-d", "sat"]
+verified_by: []
+notes: |
+  Imported from smartmontools drivedb.h ($Id: drivedb.h 5706 2025-04-27).
+  Original description: Iomega; JMicron
+
+  Status on macOS: UNVERIFIED. The smartctl flags above work on
+  Linux but most USB-SATA bridges are blocked by macOS's user-
+  space SCSI stack regardless of the -d argument (see README).
+  Please open a PR upgrading verified_by once tested.

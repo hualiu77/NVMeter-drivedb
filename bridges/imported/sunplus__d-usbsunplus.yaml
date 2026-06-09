@@ -1,0 +1,21 @@
+bridge: "Sunplus"
+usb_ids:
+  - "059b:0370"
+  - "07ab:fc8e"
+  - "0930:0b03"
+  - "0930:0b11"
+  - "0930:a002"
+  - "0939:0b15"
+  - "0939:0b16"
+  - "0c0b:b159"
+  - "18a5:0214"
+smartctl_args: ["-d", "usbsunplus"]
+verified_by: []
+notes: |
+  Imported from smartmontools drivedb.h ($Id: drivedb.h 5706 2025-04-27).
+  Original description: Verbatim Portable Hard Drive; Sunplus
+
+  Status on macOS: UNVERIFIED. The smartctl flags above work on
+  Linux but most USB-SATA bridges are blocked by macOS's user-
+  space SCSI stack regardless of the -d argument (see README).
+  Please open a PR upgrading verified_by once tested.

@@ -1,0 +1,14 @@
+bridge: "ASMedia ASM2362"
+usb_ids:
+  - "04e8:61fd"
+  - "0781:55ae"
+smartctl_args: ["-d", "sntasmedia"]
+verified_by: []
+notes: |
+  Imported from smartmontools drivedb.h ($Id: drivedb.h 5706 2025-04-27).
+  Original description: Samsung Portable SSD T9; ASMedia ASM2362
+
+  Status on macOS: UNVERIFIED. The smartctl flags above work on
+  Linux but most USB-SATA bridges are blocked by macOS's user-
+  space SCSI stack regardless of the -d argument (see README).
+  Please open a PR upgrading verified_by once tested.

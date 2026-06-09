@@ -7,9 +7,33 @@ NVMeter uses to talk SMART to your external drives.
 sell it, no attribution required (though it's appreciated). The goal is a
 shared commons of bridge-chip knowledge that benefits every tool.
 
-## How it's structured
+## Structure
 
-Each enclosure / bridge chip is one YAML file under `bridges/`. Example:
+```
+bridges/                       hand-verified entries (top-level)
+  wero-tbt5-1m2-dock.yaml
+  wd-elements-25a3.yaml
+  realtek-rtl9210b.yaml
+  …
+  imported/                    auto-imported from smartmontools drivedb.h
+    asmedia__d-sntasmedia.yaml
+    jmicron-jms578__d-sat.yaml
+    …
+```
+
+The top-level `bridges/` directory contains hand-verified entries —
+someone plugged the enclosure in, ran smartctl, confirmed the result,
+and listed themselves in `verified_by`. The `imported/` subdirectory
+contains ~120 entries auto-extracted from smartmontools'
+[`drivedb.h`](https://github.com/smartmontools/smartmontools/blob/main/src/drivedb.h)
+by [`scripts/import-smartmontools.py`](scripts/import-smartmontools.py) —
+they document chips smartmontools recognises but **have not been
+re-tested on macOS**. See [`bridges/imported/README.md`](bridges/imported/README.md)
+for how to promote an imported entry to verified status.
+
+## File format
+
+Each enclosure / bridge chip is one YAML file. Example:
 
 ```yaml
 # bridges/jms583.yaml

@@ -1,0 +1,21 @@
+bridge: "JMicron"
+usb_ids:
+  - "043e:70f1"
+  - "04e8:2f03"
+  - "04e8:2f06"
+  - "059b:0277"
+  - "059b:0278"
+  - "059f:0951"
+  - "059f:1019"
+  - "059f:1021"
+  - "152d:2337"
+smartctl_args: ["-d", "usbjmicron"]
+verified_by: []
+notes: |
+  Imported from smartmontools drivedb.h ($Id: drivedb.h 5706 2025-04-27).
+  Original description: LaCie Desktop Hard Drive; JMicron
+
+  Status on macOS: UNVERIFIED. The smartctl flags above work on
+  Linux but most USB-SATA bridges are blocked by macOS's user-
+  space SCSI stack regardless of the -d argument (see README).
+  Please open a PR upgrading verified_by once tested.
