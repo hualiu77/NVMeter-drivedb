@@ -1,0 +1,19 @@
+bridge: "JMicron JMS583 (USB-NVMe bridge)"
+vendor: "JMicron"
+usb_ids:
+  - "152d:a583"
+smartctl_args: []
+verified_by:
+  - "@AStoyanov2231"
+notes: |
+  JMS583 USB 3.2 Gen 2 to NVMe bridge, observed with USB product string
+  "External" and firmware 0x0214.
+
+  macOS status: BLOCKED. On macOS 27.0 with smartmontools 7.5, the native,
+  NVMe, SAT, and sntjmicron probes all fail with "Operation not supported by
+  device" or "Not a device of type 'scsi'". Darwin SCSI pass-through is not
+  implemented in smartmontools, so no smartctl_args value can enable SMART.
+
+  On Linux, smartctl uses `-d sntjmicron` for this bridge. NVMeter should
+  identify this USB ID and report that SMART pass-through is unavailable on
+  macOS instead of retrying another device type.
