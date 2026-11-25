@@ -1,23 +1,48 @@
 name: New enclosure data
-description: I have probe output but I don't know how to write the YAML
+description: Share a short SMART compatibility result for one enclosure
 labels: [bridge-data]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Report only the affected device. Leave out serial numbers, volume names, UUIDs, and unrelated devices. Summarize what happened instead of pasting full System Information, ioreg, or smartctl output.
   - type: input
     id: model
-    attributes: { label: Enclosure brand + model }
+    attributes: { label: Enclosure brand and model, placeholder: "Orico M2PVC3-G20" }
     validations: { required: true }
-  - type: textarea
-    id: spusb
+  - type: input
+    id: usb_id
     attributes:
-      label: "SPUSBDataType excerpt for this enclosure"
-      render: text
+      label: USB vendor:product ID (if known)
+      description: "In System Information → USB, copy only the Vendor ID and Product ID for this enclosure."
+      placeholder: "0bda:9210"
+  - type: input
+    id: macos
+    attributes: { label: macOS version, placeholder: "14.6.1" }
     validations: { required: true }
-  - type: textarea
-    id: probes
+  - type: input
+    id: nvmeter
+    attributes: { label: NVMeter version (if used) }
+  - type: dropdown
+    id: smart
     attributes:
-      label: "smartctl probe outputs (all variants you tried)"
-      render: text
+      label: SMART result
+      options:
+        - Works
+        - Blocked
+        - Unsure
     validations: { required: true }
   - type: input
     id: working
-    attributes: { label: "Which -d flag worked?", placeholder: "-d sat,16" }
+    attributes:
+      label: Working smartctl flag (if known)
+      description: "Enter only the flag and its value, or 'default' if no flag was needed. Leave blank if unknown."
+      placeholder: "-d sat,16"
+  - type: input
+    id: drive
+    attributes: { label: Drive model (optional) }
+  - type: textarea
+    id: details
+    attributes:
+      label: Connection or short error summary (optional)
+      description: "A cable, hub, dock, or short redacted error can help. Do not paste diagnostic logs."
