@@ -54,21 +54,20 @@ enforced by CI on every PR.
 
 ## I have a new enclosure to add
 
-1. Plug in the enclosure.
-2. Run:
-   ```bash
-   system_profiler SPUSBDataType | grep -B 2 -A 8 -i <your-enclosure-name>
-   smartctl --scan
-   for args in "" "-d sat" "-d sat,16" "-d sat,12" "-d jmb39x" "-d usbjmicron"; do
-       echo "=== $args ===" ; smartctl $args -i /dev/diskN | head -10
-   done
-   ```
-3. Whichever combination prints a real model / serial works. Copy the
-   `smartctl` flags into a new file under `bridges/<short-name>.yaml`.
-4. Open a PR. CI will validate the schema; a maintainer merges.
 
-If shell isn't your thing, open an issue using the **"new enclosure"**
-template instead and paste the outputs — someone else will turn it into YAML.
+1. Connect the enclosure. In **System Information → USB**, note its Vendor ID
+   and Product ID, if available. Record just the hexadecimal pair (for example,
+   `0bda:9210`), not the device report.
+2. Check whether NVMeter can read SMART. If you test with `smartctl` locally,
+   note the working `-d` flag or whether the default worked. Report the result
+   as **Works**, **Blocked**, or **Unsure**; do not treat device identification
+   alone as a successful SMART read.
+3. Open a **New enclosure data** issue and include the enclosure brand/model,
+   USB ID if known, macOS and NVMeter versions, SMART result, and working flag
+   if known. If you already have a verified entry, you can submit a YAML PR
+   under `bridges/` instead; CI checks its schema.
+
+Report only the affected device. Leave out serial numbers, volume names, UUIDs, and unrelated devices. Summarize what happened instead of pasting full System Information, ioreg, or smartctl output.
 
 ## Field reference
 
